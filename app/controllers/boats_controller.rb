@@ -6,9 +6,8 @@ class BoatsController < ApplicationController
   end
 
   def show
-    # get "/my-boats/", to: "pages#home", constraints: ->(request) {
-    #   boat = Boat.find_by(id: request.params[:boat_id])
-    #   boat && boat.user_id == request.session[:user_id]
+    # if @boat = Boat.find_by(id: request.params[:boat_id])
+    # boat && boat.user_id == request.session[:user_id]
   end
 
   def new
@@ -39,7 +38,7 @@ class BoatsController < ApplicationController
   def boat_params
     params.require(:boat).permit(:title, :price_per_day)
   end
-
+  
   def set_boat
     @boat = Boat.find(params[:id])
   end
