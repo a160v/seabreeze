@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  get 'bookings/new'
+  devise_for :users
+  # get 'bookings/new'
   # # Read all
   # get    "boats",          to: "boats#index"
   # # Create
