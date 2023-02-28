@@ -1,8 +1,16 @@
 Rails.application.routes.draw do
   devise_for :users
+  # Homepage
   root to: "pages#home"
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+  # New boat page
+  get "/boats/new" => "boats#new"
+  # Create boat page
+  post "/boats" => "boats#create", as: :create_boat
+  # 'Show' boat page
+  get "/boats/:id" => "boats#show", as: :boat
+  # My boats page
+  get "/my-boats/", to: "pages#home", constraints: ->(request) {
+    boat = Boat.find_by(id: request.params[:boat_id])
+    boat && boat.user_id == request.session[:user_id]
+  }
 end
