@@ -1,4 +1,4 @@
 class Boat < ApplicationRecord
-  belongs_to :user
-  # has_many :reviews, dependent: :destroy
+  belongs_to :user, dependent: :destroy
+  has_many :bookings
 end
