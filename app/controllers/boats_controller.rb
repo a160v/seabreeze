@@ -27,7 +27,7 @@ class BoatsController < ApplicationController
   def destroy
     @boat = Boat.find(params[:id])
     @boat.destroy
-    # No need for app/views/restaurants/destroy.html.erb
+    # No need for app/views/boats/destroy.html.erb
     redirect_to boats_path, status: :see_other
   end
 
