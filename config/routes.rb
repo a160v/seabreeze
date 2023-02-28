@@ -1,16 +1,20 @@
 Rails.application.routes.draw do
   devise_for :users
-  # Homepage
-  root to: "pages#home"
-  # Index
-  get "boats", to: "boats#index"
-  # New boat page
-  get "/boats/new" => "boats#new"
-  # Create boat page
-  post "/boats" => "boats#create", as: :create_boat
-  # 'Show' boat page
-  get "/boats/:id" => "boats#show", as: :boat
-  # Edit boat
-  get "boats/:id/edit" => "boats#edit"
-  patch "boats/:id" => "boats#update"
+  # get 'bookings/new'
+  # # Read all
+  # get    "boats",          to: "boats#index"
+  # # Create
+  # get    "boats/new",      to: "boats#new",  as: :new_boat
+  # post   "boats",          to: "boats#create"
+  # # Read one - The `show` route needs to be *after* `new` route.
+  # get    "boats/:id",      to: "boats#show", as: :boat
+  # # Update
+  # get    "boats/:id/edit", to: "boats#edit", as: :edit_boat
+  # patch  "boats/:id",      to: "boats#update"
+  # # Delete
+  # delete "boats/:id",      to: "boats#destroy"
+
+  resources :boats do
+    resources :bookings, only: [:new]
+  end
 end
