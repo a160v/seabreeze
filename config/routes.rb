@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   # Homepage
-  root to: "pages#home"
+  # root to: "pages#home"
   # Index
   get "boats", to: "boats#index"
   # New boat page
