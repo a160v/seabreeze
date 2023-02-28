@@ -1,10 +1,11 @@
 class BoatsController < ApplicationController
+  before_action :set_boat, only: [:show, :edit, :update, :destroy]
+
   def index
     @boats = Boat.all
   end
 
   def show
-    @boat = Boat.find(params[:id])
     # if @boat = Boat.find_by(id: request.params[:boat_id])
     # boat && boat.user_id == request.session[:user_id]
   end
@@ -19,17 +20,14 @@ class BoatsController < ApplicationController
   end
 
   def edit
-    @boat = Boat.find(params[:id])
   end
 
   def update
-    @boat = Boat.find(params[:id])
     @boat.update(boat_params)
     redirect_to boat_path(@boat)
   end
 
   def destroy
-    @boat = Boat.find(params[:id])
     @boat.destroy
     # No need for app/views/boats/destroy.html.erb
     redirect_to boats_path, status: :see_other
@@ -39,6 +37,10 @@ class BoatsController < ApplicationController
 
   def boat_params
     params.require(:boat).permit(:title, :price_per_day)
+  end
+  
+  def set_boat
+    @boat = Boat.find(params[:id])
   end
 
 end
