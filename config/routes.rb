@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
   # Homepage
   root to: "pages#home"
+  # Index
+  get "boats", to: "boats#index"
   # New boat page
   get "/boats/new" => "boats#new"
   # Create boat page
@@ -11,9 +13,4 @@ Rails.application.routes.draw do
   # Edit boat
   get "boats/:id/edit" => "boats#edit"
   patch "boats/:id" => "boats#update"
-  # My boats page
-  get "/my-boats/", to: "pages#home", constraints: ->(request) {
-    boat = Boat.find_by(id: request.params[:boat_id])
-    boat && boat.user_id == request.session[:user_id]
-  }
 end

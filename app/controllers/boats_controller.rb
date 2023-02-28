@@ -4,12 +4,16 @@ class BoatsController < ApplicationController
   end
   def show
     @boat = Boat.find(params[:id])
+
+    # get "/my-boats/", to: "pages#home", constraints: ->(request) {
+    #   boat = Boat.find_by(id: request.params[:boat_id])
+    #   boat && boat.user_id == request.session[:user_id]
   end
   def new
     @boat = Boat.new # Needed to instantiate the form_with
   end
   def create
-    @boat = Boat.new(restaurant_params)
+    @boat = Boat.new(boat_params)
     @boat.save # Will raise ActiveModel::ForbiddenAttributesError
   end
   def edit
