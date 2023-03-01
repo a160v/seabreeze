@@ -1,0 +1,11 @@
+<p><strong>My bookings</strong></p>
+<%= current_user.inspect %>
+<ul class="list-group">
+  <% if @boat.present? %>
+    <% @boat.bookings.each do |booking| %>
+      <li class="list-group-item"><%= booking.id %></li>
+      <li class="list-group-item"><%= booking.start_date %></li>
+    <% end %>
+  <% end %>
+</ul>
+<br>
