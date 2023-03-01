@@ -1,69 +1,29 @@
 <h1>Our Boats</h1>
-<a href="" target="_blank" style="text-decoration: none; color: black;">
-<div class="col mb-4">
-	<div class="card" style="width: 23rem; border-radius: 2em;">
-		<img src="https://d18mr9iuob0gar.cloudfront.net/media/boats/2022/06/rental-Motor-boat-bPRINCESS-55feet-bZakynthos-bGR_DIGr3Pi.jpg" class="card-img-top"
-		 style="border-top-left-radius: 2em; border-top-right-radius: 2em;" />
-		<div class="card-body">
-			<h2 class="card-title"><strong>Classik deluxe yacht</strong></h2>
-			<p class="card-text">Zürich port</p>
-			<br>
-			<div style="display: flex; justify-content: space-between;">
-				<div>
-					<p class="card-text">15 persons</p>
-				</div>
-				<div>
-					<p class="card-text">from 3000 CHF per day</p>
-				</div>
-		  </div>
-		</div>
-	</div>
-</div>
-</a>
-
-<a href="" target="_blank" style="text-decoration: none; color: black;">
-	<div class="col mb-4">
-		<div class="card" style="width: 23rem; border-radius: 2em;">
-			<img src="https://sportishka.com/uploads/posts/2021-12/1638450269_2-sportishka-com-p-lodki-krasivie-sportivnie-foto-2.jpg" class="card-img-top"
-			 style="border-top-left-radius: 2em; border-top-right-radius: 2em;" />
-			<div class="card-body">
-				<h2 class="card-title"><strong>City walk yacht</strong></h2>
-				<p class="card-text">Basel port</p>
-				<br>
-				<div style="display: flex; justify-content: space-between;">
-					<div>
-						<p class="card-text">8 persons</p>
-					</div>
-					<div>
-						<p class="card-text">from 2150 CHF per day</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	</a>
-
-	<a href="" target="_blank" style="text-decoration: none; color: black;">
+<% @boats.each do |boat| %>
+  <%= link_to(boat, style: "text-decoration: none; color: black;") do %>
 		<div class="col mb-4">
 			<div class="card" style="width: 23rem; border-radius: 2em;">
-				<img src="https://d18mr9iuob0gar.cloudfront.net/media/boats/2022/03/rental-Motor-boat-bMarex-33feet-bAliki-bGR_JlGoPHR.jpg" class="card-img-top"
-				 style="border-top-left-radius: 2em; border-top-right-radius: 2em;" />
+				<img src="https://d18mr9iuob0gar.cloudfront.net/media/boats/2022/06/rental-Motor-boat-bPRINCESS-55feet-bZakynthos-bGR_DIGr3Pi.jpg" class="card-img-top"
+				style="border-top-left-radius: 2em; border-top-right-radius: 2em;" />
 				<div class="card-body">
-					<h2 class="card-title"><strong>Family yacht</strong></h2>
-					<p class="card-text">Basel port</p>
+					<h2 class="card-title"><strong><%= boat.title %></strong></h2>
+					<p class="card-text">Zürich port</p>
 					<br>
 					<div style="display: flex; justify-content: space-between;">
 						<div>
-							<p class="card-text">12 persons</p>
+							<p class="card-text">15 persons</p>
 						</div>
 						<div>
-							<p class="card-text">from 3150 CHF per day</p>
+							<p class="card-text">from <%= boat.price_per_day %> CHF per day</p>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		</a>
+   <% end %>
+<% end %>
+
+
 
 
 
