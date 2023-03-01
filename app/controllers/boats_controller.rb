@@ -9,12 +9,17 @@ class BoatsController < ApplicationController
   end
 
   def new
-    @boat = Boat.new # Needed to instantiate the form_with
+    @boat = Boat.new
   end
 
   def create
     @boat = Boat.new(boat_params)
-    @boat.save # Will raise ActiveModel::ForbiddenAttributesError
+    @boat.user = current_user
+    if @boat.save
+      redirect_to boat_path(@boat)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def edit
