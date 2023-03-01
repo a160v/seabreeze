@@ -1,5 +1,5 @@
 class BoatsController < ApplicationController
-  before_action :set_boat, only: [:show, :edit, :update, :destroy]
+  before_action :set_boat, only: %i[show edit update destroy]
 
   def index
     @boats = current_user.boats
