@@ -1,2 +1,6 @@
-<h1>It is fixed</h1>
-
+<h1>All boats</h1>
+<ul class="list-group">
+  <% @boats.each do |boat| %>
+    <li class="list-group-item"><%= boat.title %></li>
+  <% end %>
+</ul>
