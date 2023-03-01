@@ -6,7 +6,7 @@ class BookingsController < ApplicationController
   end
 
   def index
-    @bookings = @boat.bookings
+    @bookings = current_user.bookings
   end
 
   def create
