@@ -1,9 +1,14 @@
 class BookingsController < ApplicationController
-  before_action :set_restaurant, only: %i[new create]
+  before_action :set_boat, only: %i[new create]
 
   def new
-    # We need @boat in our `simple_form_for`
+    @boat = Boat.find(params[:boat_id])
     @booking = Booking.new
+  end
+
+  def index
+    @boat = Boat.find(params[:boat_id])
+    @bookings = @boat.bookings
   end
 
   def create
