@@ -1,2 +1,6 @@
-<h1> Welcome to the "New Boat Page<h1>
-<h2>Here you put a form for a new boat and other fancy stuff</h2>
+<h1>Rent my boat</h1>
+<%= simple_form_for @boat do |f| %>
+  <%= f.input :title %>
+  <%= f.input :price_per_day %>
+  <%= f.submit "Create my boat", class: "btn btn-primary" %>
+<% end %>
