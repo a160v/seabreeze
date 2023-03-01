@@ -1,6 +1,24 @@
 <h1>All boats</h1>
 <ul class="list-group">
   <% @boats.each do |boat| %>
-    <li class="list-group-item"><%= boat.title %></li>
+      <div class="col mb-4">
+        <div class="card" style="width: 23rem; border-radius: 2em;">
+          <img src="https://d18mr9iuob0gar.cloudfront.net/media/boats/2022/06/rental-Motor-boat-bPRINCESS-55feet-bZakynthos-bGR_DIGr3Pi.jpg" class="card-img-top"
+          style="border-top-left-radius: 2em; border-top-right-radius: 2em;" />
+          <div class="card-body">
+            <h2 class="card-title"><strong><%= boat.title %></strong></h2>
+            <p class="card-text">Zürich port</p>
+            <br>
+            <div style="display: flex; justify-content: space-between;">
+              <div>
+                <p class="card-text">15 persons</p>
+              </div>
+              <div>
+                <p class="card-text">from <%= boat.price_per_day %> CHF per day</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
   <% end %>
 </ul>
