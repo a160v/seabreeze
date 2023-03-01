@@ -1,21 +1,21 @@
 class BookingsController < ApplicationController
-  before_action :set_boat, only: %i[new create]
+  before_action :set_boat, only: %i[new index create]
 
   def new
-    @boat = Boat.find(params[:boat_id])
     @booking = Booking.new
   end
 
   def index
-    @boat = Boat.find(params[:boat_id])
     @bookings = @boat.bookings
   end
 
   def create
     @booking = Booking.new(booking_params)
     @booking.boat = @boat
-    @booking.save
-    redirect_to boat_path(@boat)
+    @booking.user = current_user
+    @booking.booking_price = (@booking.check_out&.to_date - @booking.check_in&.to_date) * @boat.price_per_day
+    @booking.save!
+    redirect_to boat_bookings_path
   end
 
   private
