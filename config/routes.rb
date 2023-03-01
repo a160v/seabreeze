@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+  root to: "pages#home"
   # get 'bookings/new'
   # # Read all
   # get    "boats",          to: "boats#index"
