@@ -18,6 +18,11 @@ Rails.application.routes.draw do
   # get    "bookings/new",      to: "bookings#new",  as: /boats/:boat_id/:new_boat
   # post   "bookings",          to: "bookings#create"
   resources :boats do
-    resources :bookings, only: [:new, :index, :create]
+    resources :bookings, only: [:new, :index, :create] do
+      member do
+        post 'accept'
+        post 'reject'
+      end
+    end
   end
 end
