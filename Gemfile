@@ -80,4 +80,8 @@ group :test do
   gem "webdrivers"
 end
 
+# PG search gem for global search across boats
 gem "pg_search"
+
+# Pundit gem for a authorization system
+gem "pundit"

@@ -2,18 +2,21 @@ class BookingsController < ApplicationController
   before_action :set_boat, only: %i[new index create accept reject]
   before_action :set_booking, only: %i[accept reject]
 
-  def new
-    @booking = Booking.new
-  end
-
   def index
     @bookings = current_user.bookings
+    @bookings = policy_scope(Booking)
+  end
+
+  def new
+    @booking = Booking.new
+    authorize @booking
   end
 
   def create
     @booking = Booking.new(booking_params)
     @booking.boat = @boat
     @booking.user = current_user
+    authorize @booking
     @booking.booking_price = (@booking.check_out&.to_date - @booking.check_in&.to_date) * @boat.price_per_day
     @booking.status = "pending"
     @booking.save!
@@ -25,12 +28,14 @@ class BookingsController < ApplicationController
   end
 
   def accept
+    authorize @booking
     @booking.accept!
     # @booking.status = "pending"
     # redirect_to bookings_path, notice: "Booking was accepted"
   end
 
   def reject
+    authorize @booking
     @booking.reject!
     # redirect_to boat_bookings_path, notice: "Booking was rejected"
   end
