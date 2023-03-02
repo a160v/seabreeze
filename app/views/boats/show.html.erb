@@ -13,8 +13,11 @@
           <%= f.input :check_out %>
           <%= f.submit "Book this boat", class: "btn btn-primary" %>
         <% end %>
-        <% else %>
-          <p>Form is away</p>
+      <% else %>
+        <% @boat.bookings.pending.each do |booking| %>
+          <%= button_to 'Accept', accept_boat_booking_path(@boat, booking) %>
+          <%= button_to 'Reject', reject_boat_booking_path(@boat, booking) %>
+        <% end %>
       <% end %>
     </div>
   </div>

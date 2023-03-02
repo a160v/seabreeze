@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
-  before_action :set_boat, only: %i[new index create]
+  before_action :set_boat, only: %i[new index create accept reject]
+  before_action :set_booking, only: %i[accept reject]
 
   def new
     @booking = Booking.new
@@ -14,8 +15,24 @@ class BookingsController < ApplicationController
     @booking.boat = @boat
     @booking.user = current_user
     @booking.booking_price = (@booking.check_out&.to_date - @booking.check_in&.to_date) * @boat.price_per_day
+    @booking.status = "pending"
     @booking.save!
     redirect_to boat_bookings_path
+  end
+
+  def pending
+    return true
+  end
+
+  def accept
+    @booking.accept!
+    # @booking.status = "pending"
+    # redirect_to bookings_path, notice: "Booking was accepted"
+  end
+
+  def reject
+    @booking.reject!
+    # redirect_to boat_bookings_path, notice: "Booking was rejected"
   end
 
   private
@@ -27,4 +44,10 @@ class BookingsController < ApplicationController
   def booking_params
     params.require(:booking).permit(:check_in, :check_out, :price_per_day)
   end
+
+  def set_booking
+    # @booking = current_user.bookings.find(params[:id])
+    @booking = Booking.find(params[:id])
+  end
+
 end
