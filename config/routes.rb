@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  namespace :boats do
+    get 'bookings/index'
+    get 'bookings/new'
+    get 'bookings/create'
+  end
+  namespace :boat do
+    get 'bookings/index'
+    get 'bookings/new'
+    get 'bookings/create'
+  end
   get 'users/user_params'
   devise_for :users
   root to: "pages#home"
