@@ -4,7 +4,7 @@ class BoatsController < ApplicationController
   def index
     # @boats = current_user.boats
     if params[:query].present?
-      @boats = Boat.where("title ILIKE ?", "%#{params[:query]}%")
+      @boats = Boat.global_search(params[:query])
     else
       @boats = Boat.all
     end
