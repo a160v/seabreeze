@@ -2,7 +2,12 @@ class BoatsController < ApplicationController
   before_action :set_boat, only: %i[show edit update destroy]
 
   def index
-    @boats = current_user.boats
+    # @boats = current_user.boats
+    if params[:query].present?
+      @boats = Boat.where("title ILIKE ?", "%#{params[:query]}%")
+    else
+      @boats = Boat.all
+    end
   end
 
   def show
