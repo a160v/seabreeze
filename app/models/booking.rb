@@ -2,7 +2,8 @@ class Booking < ApplicationRecord
   belongs_to :user, dependent: :destroy
   belongs_to :boat
 
-  enum status: [:pending, :accepted, :rejected]
+  # enum status: [:pending, :accepted, :rejected]
+  enum status: { pending: "pending", accepted: "accepted", rejected: "rejected" }
 
   def pending
     self.status = :pending
