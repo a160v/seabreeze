@@ -4,6 +4,8 @@ class Booking < ApplicationRecord
 
   validate :check_in_in_future
   validate :check_out_after_check_in
+  validates :check_in, presence: true
+  validates :check_out, presence: true
 
   # enum status: [:pending, :accepted, :rejected]
   enum status: { pending: "pending", accepted: "accepted", rejected: "rejected" }
@@ -24,13 +26,13 @@ class Booking < ApplicationRecord
   end
 
   def check_in_in_future
-      if check_in.present? && check_in < Date.today
+    if check_in.present? && check_in < Date.today
       errors.add(:check_in, "must be in future")
-      end
+    end
   end
 
   def check_out_after_check_in
-      if check_out.present? && check_out <= Date.today
+    if check_out.present? && check_out <= Date.today
       errors.add(:check_out, "must be in future")
     end
   end

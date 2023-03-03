@@ -56,6 +56,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_03_115919) do
     t.integer "manufacturing_year"
     t.boolean "with_crew"
     t.boolean "availability"
+    t.float "latitude"
+    t.float "longitude"
     t.index ["user_id"], name: "index_boats_on_user_id"
   end
 

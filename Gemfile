@@ -85,4 +85,10 @@ gem "pg_search"
 
 # Pundit gem for a authorization system
 gem "pundit"
+
+# Cloudinary gem to manage images
 gem "cloudinary"
+
+# Geocoder gem for rendering maps
+gem "geocoder"
+gem "dotenv-rails"
