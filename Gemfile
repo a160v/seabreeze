@@ -89,3 +89,6 @@ gem "pundit"
 # Geocoder gem for rendering maps
 gem "geocoder"
 gem "dotenv-rails"
+
+# Adds faker
+gem 'faker'
