@@ -23,6 +23,7 @@ class BoatsController < ApplicationController
         marker_html: render_to_string(partial: "marker")
       }]
     authorize @boat
+    @booking = @boat.bookings.build
   end
 
   def new

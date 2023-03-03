@@ -11,13 +11,18 @@ class Boats::BookingsController < ApplicationController
   end
 
   def create
-    @booking = @boat.bookings.new(booking_params)
+    @booking = @boat.bookings.build(booking_params)
     @booking.user = current_user
     authorize @booking
-    @booking.booking_price = (@booking.check_out&.to_date - @booking.check_in&.to_date) * @boat.price_per_day
+    if @booking.check_out && @booking.check_in && @boat.price_per_day
+      @booking.booking_price = (@booking.check_out&.to_date - @booking.check_in&.to_date) * @boat.price_per_day
+    end
     @booking.status = "pending"
-    @booking.save!
-    redirect_to bookings_path
+    if @booking.save
+      redirect_to bookings_path
+    else
+      render "boats/show"
+    end
   end
 
   private
