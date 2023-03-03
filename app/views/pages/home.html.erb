@@ -1,8 +1,6 @@
-<div class="container" style="padding: 0px;">
-<div class="break-out" style="width: 100vw; position: relative; left: calc(-1*(100vw - 100%) /2	); margin-top: -45px;">
-	<div class="banner bg-dark" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://opis-cdn.tinkoffjournal.ru/ip/TftyKGyhAJ90HuARLfl2nEcJOZ9kbPHQLHhwUrg362Q/w:1400/aHR0cHM6Ly9pbWct/Y2RuLnRpbmtvZmZq/b3VybmFsLnJ1Ly0v/bWFpbl9fX3NodXR0/ZXJzdG9ja18xMDEy/ODU0MzM3Lml4dzRk/bXFpZXh2bC5qcGc); background-size: cover;
-	background-position: center;
-	padding: 150px 0;">
+<div class="container">
+<div class="break-out">
+	<div class="banner bg-dark">
 		<div class="container text-light">
 			<h1><strong>Seabreeze</strong> - your private <strong>boat</strong> sharing platform!</h1>
 		</div>
@@ -17,10 +15,9 @@
 	  <div class="row">
 		<% @boats.each do |boat| %>
 		  <div class="col-lg-4 col-md-6 mb-4">
-			<div class="card h-100" style="border-radius: 2em;">
-				<%= link_to(boat, style: "text-decoration: none; color: black;") do %>
-			  <img src="https://d18mr9iuob0gar.cloudfront.net/media/boats/2022/06/rental-Motor-boat-bPRINCESS-55feet-bZakynthos-bGR_DIGr3Pi.jpg" class="card-img-top"
-			  style="border-top-left-radius: 2em; border-top-right-radius: 2em;" />
+			<div class="card h-100">
+				<%= link_to(boat) do %>
+			  <img src="https://d18mr9iuob0gar.cloudfront.net/media/boats/2022/06/rental-Motor-boat-bPRINCESS-55feet-bZakynthos-bGR_DIGr3Pi.jpg" class="card-img-top"/>
 			  <div class="card-body">
 				<h2 class="card-title"><strong><%= boat.title %></strong></h2>
 				<p class="card-text">Zürich port</p>
