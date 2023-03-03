@@ -1,6 +1,7 @@
 class BoatsController < ApplicationController
   before_action :set_boat, only: %i[show edit update destroy]
 
+
   def index
     if params[:query].present?
       # Perform a global search in the Boats#index
@@ -55,7 +56,7 @@ class BoatsController < ApplicationController
   private
 
   def boat_params
-    params.require(:boat).permit(:title, :price_per_day, :status)
+    params.require(:boat).permit(:title, :description, :address, :capacity, :price_per_day, :status, :photo)
   end
 
   def set_boat

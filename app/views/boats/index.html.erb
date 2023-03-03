@@ -5,7 +5,7 @@
     <% @boats.each do |boat| %>
         <div class="col mb-4">
           <div class="card" style="width: 23rem; border-radius: 2em;">
-            <img src="https://d18mr9iuob0gar.cloudfront.net/media/boats/2022/06/rental-Motor-boat-bPRINCESS-55feet-bZakynthos-bGR_DIGr3Pi.jpg" class="card-img-top"
+            <img src="<%= cl_image_path @boat.photo.key, height: 150, width: 100, crop: :fill%>" class="card-img-top"
             style="border-top-left-radius: 2em; border-top-right-radius: 2em;" />
             <div class="card-body">
               <h2 class="card-title"><strong><%= boat.title %></strong></h2>

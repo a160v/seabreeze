@@ -85,4 +85,4 @@ gem "pg_search"
 
 # Pundit gem for a authorization system
 gem "pundit"
-gem "dotenv-rails", groups: [:development, :test]
+gem "cloudinary"
