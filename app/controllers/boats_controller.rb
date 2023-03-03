@@ -15,6 +15,7 @@ class BoatsController < ApplicationController
 
   def show
     authorize @boat
+    @booking = @boat.bookings.build
   end
 
   def new
