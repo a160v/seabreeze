@@ -14,6 +14,14 @@ class BoatsController < ApplicationController
   end
 
   def show
+    # The `geocoded` scope filters only boats with coordinates
+    @markers = [
+      {
+        lat: @boat.latitude,
+        lng: @boat.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: {boat: @boat}),
+        marker_html: render_to_string(partial: "marker")
+      }]
     authorize @boat
     @booking = @boat.bookings.build
   end
@@ -56,7 +64,7 @@ class BoatsController < ApplicationController
   private
 
   def boat_params
-    params.require(:boat).permit(:title, :price_per_day, :status)
+    params.require(:boat).permit(:title, :price_per_day, :status, :address)
   end
 
   def set_boat

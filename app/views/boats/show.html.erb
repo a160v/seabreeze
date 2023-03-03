@@ -13,9 +13,12 @@
         <p class="card-text" style="font-size: 1.2rem;">Crew availability <%= @boat.with_crew %></p>
         <p class="card-text" style="font-size: 1.2rem;">Price per day <%= @boat.price_per_day %> CHF</p>
         <p class="card-text" style="font-size: 1.2rem;">Location <%= @boat.address %></p>
-        <div>
-        <%# Image hardcoded for viewing purpose; add mapp here %>
-            <img src="https://www.humaan.com/wp-content/uploads/2014/11/google-maps-basic-marker.png" class="card-img-top" alt="port location" style="max-height: 150px;">
+        <br>
+        <%# Adds map here %>
+        <div style="width: 100%; height: 600px;"
+          data-controller="map"
+          data-map-markers-value="<%= @markers.to_json %>"
+          data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
         </div>
       </div>
       <br>

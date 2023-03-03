@@ -85,3 +85,7 @@ gem "pg_search"
 
 # Pundit gem for a authorization system
 gem "pundit"
+
+# Geocoder gem for rendering maps
+gem "geocoder"
+gem "dotenv-rails"

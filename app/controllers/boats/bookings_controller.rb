@@ -2,11 +2,12 @@ class Boats::BookingsController < ApplicationController
   before_action :set_boat, only: %i[new index create]
   def index
     @bookings = @boat.bookings
+    authorize @booking
   end
 
   def new
     @booking = @boat.bookings.new
-    authorize @boat
+    authorize @booking
   end
 
   def create
