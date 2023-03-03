@@ -8,7 +8,7 @@
         <p class="card-text" style="font-size: 1.2rem;">The Boat Price is <%= @boat.price_per_day %> CHF</p>
       </div>
       <% if @boat.user != current_user %>
-        <%= simple_form_for [@boat, @boat.bookings.build], html: { onsubmit: "alert('must be in future')" } do |f| %>
+        <%= simple_form_for [@boat, @boat.bookings.build], html: { onsubmit: "alert('Check-out date should be in future')" } do |f| %>
           <%= f.input :check_in %>
           <%= f.input :check_out %>
           <%= f.submit "Book this boat", class: "btn btn-primary" %>
