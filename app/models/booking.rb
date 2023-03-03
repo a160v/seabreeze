@@ -1,6 +1,7 @@
 class Booking < ApplicationRecord
   belongs_to :user, dependent: :destroy
   belongs_to :boat
+
   validate :check_in_in_future
   validate :check_out_after_check_in
 
