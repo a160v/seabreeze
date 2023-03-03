@@ -3,24 +3,42 @@ class BookingsController < ApplicationController
 
   def index
     @bookings = current_user.bookings
+    @bookings = policy_scope(Booking)
+  end
+
+  def new
+    @booking = Booking.new
+    authorize @booking
   end
 
   def show
     @booking = Booking.find(params[:id])
   end
 
+  def create
+    @booking = Booking.new(booking_params)
+    @booking.boat = @boat
+    @booking.user = current_user
+    authorize @booking
+    @booking.booking_price = (@booking.check_out&.to_date - @booking.check_in&.to_date) * @boat.price_per_day
+    @booking.status = "pending"
+    @booking.save!
+    redirect_to boat_bookings_path
+  end
 
   def pending
     return true
   end
 
   def accept
+    authorize @booking
     @booking.accept!
     # @booking.status = "pending"
     # redirect_to bookings_path, notice: "Booking was accepted"
   end
 
   def reject
+    authorize @booking
     @booking.reject!
     # redirect_to boat_bookings_path, notice: "Booking was rejected"
   end

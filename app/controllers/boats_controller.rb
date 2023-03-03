@@ -2,42 +2,53 @@ class BoatsController < ApplicationController
   before_action :set_boat, only: %i[show edit update destroy]
 
   def index
-    # @boats = current_user.boats
     if params[:query].present?
+      # Perform a global search in the Boats#index
       @boats = Boat.global_search(params[:query])
     else
+      # Otherwise show all boats
       @boats = Boat.all
     end
+    # Apply the policy scope to the boats
+    @boats = policy_scope(Boat)
   end
 
   def show
+    authorize @boat
   end
 
   def new
+    # Fetch data from the new boat form
     @boat = Boat.new
+    authorize @boat
   end
 
   def create
     @boat = Boat.new(boat_params)
+    # Set boat.user_id to current_user.id
     @boat.user = current_user
+    authorize @boat
     if @boat.save
       redirect_to boat_path(@boat)
     else
+      # If the boat is invalid, show unprocessable entity
       render :new, status: :unprocessable_entity
     end
   end
 
   def edit
+    authorize @boat
   end
 
   def update
+    authorize @boat
     @boat.update(boat_params)
     redirect_to boat_path(@boat)
   end
 
   def destroy
+    authorize @boat
     @boat.destroy
-    # No need for app/views/boats/destroy.html.erb
     redirect_to boats_path, status: :see_other
   end
 
@@ -50,5 +61,4 @@ class BoatsController < ApplicationController
   def set_boat
     @boat = Boat.find(params[:id])
   end
-
 end
