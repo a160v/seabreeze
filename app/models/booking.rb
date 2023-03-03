@@ -4,7 +4,8 @@ class Booking < ApplicationRecord
   validate :check_in_in_future
   validate :check_out_after_check_in
 
-  enum status: [:pending, :accepted, :rejected]
+  # enum status: [:pending, :accepted, :rejected]
+  enum status: { pending: "pending", accepted: "accepted", rejected: "rejected" }
 
   def pending
     self.status = :pending

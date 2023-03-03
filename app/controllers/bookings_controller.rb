@@ -1,5 +1,4 @@
 class BookingsController < ApplicationController
-  before_action :set_boat, only: %i[new index create accept reject]
   before_action :set_booking, only: %i[accept reject]
 
   def index
@@ -10,6 +9,10 @@ class BookingsController < ApplicationController
   def new
     @booking = Booking.new
     authorize @booking
+  end
+
+  def show
+    @booking = Booking.find(params[:id])
   end
 
   def create
@@ -44,10 +47,6 @@ class BookingsController < ApplicationController
 
   def set_boat
     @boat = Boat.find(params[:boat_id])
-  end
-
-  def booking_params
-    params.require(:booking).permit(:check_in, :check_out, :price_per_day)
   end
 
   def set_booking
