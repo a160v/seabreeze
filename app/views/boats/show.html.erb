@@ -32,8 +32,8 @@
           <% end %>
         <% else %>
           <% @boat.bookings.pending.each do |booking| %>
-            <%= button_to 'Accept', accept_booking_path(booking) %>
-            <%= button_to 'Decline', reject_booking_path(booking) %>
+            <%= button_to 'Accept', accept_booking_path(booking), class: "btn btn-primary rounded-pill" %>
+            <%= button_to 'Decline', reject_booking_path(booking), class: "btn btn-primary rounded-pill" %>
           <% end %>
         <% end %>
       </div>
